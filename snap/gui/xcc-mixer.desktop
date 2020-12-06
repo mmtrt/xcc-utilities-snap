@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=XCC Mixer
+Comment=
+Exec=xcc-utilities.xcc-mixer
+Icon=${SNAP}/meta/gui/xcc-mixer.png
+Categories=Utility
+Terminal=false
+StartupNotify=true
+StartupWMClass=XCC Mixer.exe
+Keywords=mixer,utilities

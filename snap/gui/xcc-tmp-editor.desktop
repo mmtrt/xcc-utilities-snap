@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=XCC TMP Editor
+Comment=
+Exec=xcc-utilities.xcc-tmp-editor
+Icon=${SNAP}/meta/gui/xcc-tmp-editor.png
+Categories=Utility
+Terminal=false
+StartupNotify=true
+StartupWMClass=XCC TMP Editor.exe
+Keywords=editor,utilities

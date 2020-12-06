@@ -1,0 +1,130 @@
+name: xcc-utilities
+title: XCC Utilities (Wine)
+summary: xcc-utilities is a mix/mod editor.
+description: |
+ contains XCC AV Player, Editor, Mixer, MIX Editor, Mod Creator, Launcher and TMP Editor.
+adopt-info: xcc-utilities
+
+confinement: strict
+grade: stable
+architectures:
+  - build-on: amd64
+base: core18
+
+plugs:
+  wine-runtime:
+    interface: content
+    target: $SNAP/wine-runtime
+    default-provider: wine-platform-runtime
+  wine-5-stable:
+    interface: content
+    target: $SNAP/wine-platform
+    default-provider: wine-platform-5-stable
+
+environment:
+  WINEDLLOVERRIDES: "mscoree,mshtml="         # Prevent pop-ups about Wine Mono and Wine Gecko
+  WINEPREFIX: "$SNAP_USER_COMMON/.wine"
+  WINEARCH: "win32"
+  INSTALL_URL: "https://cdn.discordapp.com/attachments/780794442171809822/784325713574363166/XCC_Utilities.exe"
+  INSTALL_FLAGS: "/S"
+
+
+apps:
+  xcc-utilities:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier
+    plugs: 
+      - opengl
+      - home
+      - network
+      - removable-media
+
+  xcc-av-player:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
+    environment:
+      RUN_EXE: "c:/Program Files/XCC/Utilities/XCC AV Player.exe"
+    plugs: 
+      - opengl
+      - home
+      - network
+      - removable-media
+
+  xcc-editor:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
+    environment:
+      RUN_EXE: "c:/Program Files/XCC/Utilities/XCC Editor.exe"
+    plugs: 
+      - opengl
+      - home
+      - network
+      - removable-media
+
+  xcc-mix-editor:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
+    environment:
+      RUN_EXE: "c:/Program Files/XCC/Utilities/XCC MIX Editor.exe"
+    plugs: 
+      - opengl
+      - home
+      - network
+      - removable-media
+
+  xcc-mixer:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
+    environment:
+      RUN_EXE: "c:/Program Files/XCC/Utilities/XCC Mixer.exe"
+    plugs: 
+      - opengl
+      - home
+      - network
+      - removable-media
+
+  xcc-tmp-editor:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier run-exe
+    environment:
+      RUN_EXE: "c:/Program Files/XCC/Utilities/XCC TMP Editor.exe"
+    plugs: 
+      - opengl
+      - home
+      - network
+      - removable-media
+
+  # The wine command can be used to run applications inside the wine
+  # environment that this snap uses.
+  #
+  # For example, users can configure the wine environment of this snap
+  # by running `myapp.wine winecfg`.
+  wine:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier
+    plugs:
+      - home
+      - network
+
+  # The winetricks command can be used to run winetricks inside the wine
+  # environment that this snap uses.
+  winetricks:
+    extensions: [ gnome-3-28 ]
+    command: bin/sommelier winetricks
+    plugs:
+      - network
+
+parts:
+  xcc-utilities:
+    plugin: nil
+    override-build: |
+      snapcraftctl build
+      set -ex
+      snapcraftctl set-version "1.0"
+
+  # The sommelier script helps you snap Windows applications using Wine. It 
+  # initializes and configures Wine and installs the Windows application.
+  sommelier:
+    plugin: make
+    source: https://github.com/snapcrafters/sommelier-core.git
+    source-branch: "1.0"

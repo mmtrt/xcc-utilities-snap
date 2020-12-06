@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=XCC AV Player
+Comment=
+Exec=xcc-utilities.xcc-av-player
+Icon=${SNAP}/meta/gui/xcc-av-player.png
+Categories=Utility
+Terminal=false
+StartupNotify=true
+StartupWMClass=XCC AV Player.exe
+Keywords=player,utilities

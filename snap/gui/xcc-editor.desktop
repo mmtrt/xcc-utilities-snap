@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=XCC Editor
+Comment=
+Exec=xcc-utilities.xcc-editor
+Icon=${SNAP}/meta/gui/xcc-editor.png
+Categories=Utility
+Terminal=false
+StartupNotify=true
+StartupWMClass=XCC Editor.exe
+Keywords=editor,utilities

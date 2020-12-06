@@ -1,0 +1,12 @@
+[Desktop Entry]
+Type=Application
+Encoding=UTF-8
+Name=XCC MIX Editor
+Comment=
+Exec=xcc-utilities.xcc-mix-editor
+Icon=${SNAP}/meta/gui/xcc-mix-editor.png
+Categories=Utility
+Terminal=false
+StartupNotify=true
+StartupWMClass=XCC MIX Editor.exe
+Keywords=editor,utilities
