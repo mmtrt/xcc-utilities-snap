@@ -11,6 +11,9 @@ architectures:
   - build-on: amd64
 base: core18
 
+# This line enables LZO compression for the snap
+compression: lzo
+
 plugs:
   wine-runtime:
     interface: content
