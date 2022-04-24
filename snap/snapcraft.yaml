@@ -1,5 +1,5 @@
 name: xcc-utilities
-title: XCC Utilities (Wine)
+title: XCC Utilities (WINE)
 summary: xcc-utilities is a mix/mod editor.
 description: |
  contains XCC AV Player, Editor, Mixer, MIX Editor, Mod Creator, Launcher and TMP Editor.
@@ -19,10 +19,10 @@ plugs:
     interface: content
     target: $SNAP/wine-runtime
     default-provider: wine-platform-runtime
-  wine-5-stable:
+  wine-6-stable:
     interface: content
     target: $SNAP/wine-platform
-    default-provider: wine-platform-5-stable
+    default-provider: wine-platform-6-stable
 
 environment:
   WINEDLLOVERRIDES: "mscoree,mshtml="         # Prevent pop-ups about Wine Mono and Wine Gecko
@@ -30,6 +30,8 @@ environment:
   WINEARCH: "win32"
   INSTALL_URL: "https://cdn.discordapp.com/attachments/780794442171809822/784325713574363166/XCC_Utilities.exe"
   INSTALL_FLAGS: "/S"
+  NO_AT_BRIDGE: "1" # Fix yad error Failed to connect to socket /tmp/dbus-xxx: No such file or directory
+  DISABLE_WAYLAND: "1" # Fix gtk decoration under wayland session
 
 
 apps:
@@ -91,7 +93,7 @@ apps:
     command: bin/sommelier run-exe
     environment:
       RUN_EXE: "c:/Program Files/XCC/Utilities/XCC TMP Editor.exe"
-    plugs: 
+    plugs:
       - opengl
       - home
       - network
@@ -125,9 +127,9 @@ parts:
       set -ex
       snapcraftctl set-version "1.0"
 
-  # The sommelier script helps you snap Windows applications using Wine. It 
+  # The sommelier script helps you snap Windows applications using Wine. It
   # initializes and configures Wine and installs the Windows application.
   sommelier:
     plugin: make
-    source: https://github.com/snapcrafters/sommelier-core.git
-    source-branch: "1.0"
+    source: https://github.com/mmtrt/sommelier-core.git
+    source-branch: "tmp"
