@@ -32,7 +32,7 @@ environment:
   INSTALL_FLAGS: "/S"
   NO_AT_BRIDGE: "1" # Fix yad error Failed to connect to socket /tmp/dbus-xxx: No such file or directory
   DISABLE_WAYLAND: "1" # Fix gtk decoration under wayland session
-
+  SYSTEM_WGETRC: "$SNAP/wine-runtime/etc/wgetrc"
 
 apps:
   xcc-utilities:
@@ -133,3 +133,10 @@ parts:
     plugin: make
     source: https://github.com/mmtrt/sommelier-core.git
     source-branch: "tmp"
+
+  # This reverts changes from https://github.com/snapcore/snapcraft/pull/3586
+  fix-fontconfig:
+    plugin: nil
+    after: [gnome-3-28-extension]
+    override-prime: |
+      sed -i '/snap-package/,+1d' $SNAPCRAFT_PRIME/snap/command-chain/desktop-launch
